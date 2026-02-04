@@ -1,0 +1,15 @@
+base_packages:
+  - ca-certificates
+  - gnupg
+  - lsb-release
+
+docker_packages:
+  - docker-ce
+  - docker-ce-cli
+  - containerd.io
+
+deploy_user: deploy
+
+docker_users:
+  - ansible
+  - "{{ deploy_user }}"

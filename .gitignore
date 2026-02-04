@@ -1,0 +1,9 @@
+*.retry
+*.retry
+*.log
+*.swp
+*.bak
+*.pem
+*.key
+*.env
+__pycache__/
