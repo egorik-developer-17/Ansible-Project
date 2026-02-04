@@ -1,4 +1,4 @@
 [servers]
-CA ansible_host=147.45.153.207 ansible_port=1870
-monitoring ansible_host=5.129.249.192 ansible_port=2233
-VPN ansible_host=89.23.99.209 ansible_port=2234
+CA ansible_host=IP_ADRESS ansible_port=Port
+monitoring ansible_host=IP_ADRESS ansible_port=Port
+VPN ansible_host=IP_ADRESS ansible_port=Port
