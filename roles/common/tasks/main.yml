@@ -1,33 +1,27 @@
-- name: Установка зависимостей
-  apt: 
+- name: Update apt
+  apt:
+   update_cache: yes
+
+- name: Install atop package
+  package:
+    name: atop
+    state: present
+
+- name: Enable and start atop service
+  service:
+  name: atop
+  state: started
+  enabled: yes
+
+- name: Install base packages
+  apt:
     name: "{{ base_packages }}"
     state: present
-    update_cache: yes
-- name: Добавление Docker ключа
-  apt_key: 
-    url: https://download.docker.com/linux/ubuntu/gpg
-    state: present
 
-- name: Добавление репозитория Докера
-  apt_repository:
-    repo:  "deb [arch=amd64 ] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release}} stable"
-    state: present
-
-- name: Установка Docker
-  apt:
-     name: "{{ docker_packages }}"
-     state: present
-     update_cache: yes
-
-- name: Автозапуск Docker
-  systemd: 
-    name: docker
-    enabled: true
-    state: started
-
-- name: Добавление докер пользователей в группу
+- name: Create deploy user
   user:
-    name: "{{ item  }}"
-    groups: docker
+    name: "{{ deploy_user }}"
+    shell: /bin/bash
+    groups: sudo
     append: yes
-  loop: "{{ docker_users }}"
+

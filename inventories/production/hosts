@@ -1,4 +1,4 @@
 [servers]
-CA ansible_host=IP_ADRESS ansible_port=Port
-monitoring ansible_host=IP_ADRESS ansible_port=Port
-VPN ansible_host=IP_ADRESS ansible_port=Port
+CA 
+monitoring 
+VPN

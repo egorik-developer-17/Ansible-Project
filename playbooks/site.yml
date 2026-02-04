@@ -1,4 +1,5 @@
 - hosts: servers
-  roles: 
-    - common
+  become: true
+  roles:
+    - roles
     - docker
