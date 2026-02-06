@@ -22,10 +22,5 @@
     name: "{{ docker_packages }}"
     state: present
     update_cache: yes
-  notify: restart docker
+  notify: docker enabled/restarted
 
-- name: Enable Docker service
-  systemd:
-    name: docker
-    enabled: yes
-    state: started
