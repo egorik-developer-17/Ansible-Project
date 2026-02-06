@@ -1,0 +1,5 @@
+- name: Enable and start atop service
+  service:
+  name: atop
+  state: started
+  enabled: yes

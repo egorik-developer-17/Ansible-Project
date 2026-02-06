@@ -6,12 +6,7 @@
   package:
     name: atop
     state: present
-
-- name: Enable and start atop service
-  service:
-  name: atop
-  state: started
-  enabled: yes
+  notify: Enable and start atop service
 
 - name: Install base packages
   apt:

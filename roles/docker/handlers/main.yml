@@ -1,4 +1,6 @@
-- name: restart docker
+- name: docker enabled/restarted
   systemd:
     name: docker
+    enabled: yes
     state: restarted
+
