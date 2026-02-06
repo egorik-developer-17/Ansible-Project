@@ -1,0 +1,46 @@
+---
+- name: Install Nginx Web Server on Debian Family
+  apt:
+    name: nginx
+    state: latest
+  notify:
+    - nginx systemd
+
+- name: Replace nginx.conf
+  template:
+    src=templates/nginx.conf
+    dest=/etc/nginx/nginx.conf
+
+- name: Create site directory
+  file:
+    path: /var/www/mysite
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+
+- name: Copy website files
+  copy:
+    src: index.html
+    dest: /var/www/mysite/index.html
+    owner: www-data
+    group: www-data
+    mode: '0644'
+
+- name: Deploy nginx config
+  template:
+    src: mysite.conf.j2
+    dest: /etc/nginx/sites-available/mysite
+  notify: reload nginx
+
+- name: Enable site
+  file:
+    src: /etc/nginx/sites-available/mysite
+    dest: /etc/nginx/sites-enabled/mysite
+    state: link
+
+- name: Remove default site
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+  notify: reload nginx
